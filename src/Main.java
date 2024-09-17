@@ -25,6 +25,12 @@ public class Main {
 
         Game.gameMoves(player1, player2);
 
+        System.out.println("\nDeseja jogar novamente?\n1. Sim\n2. Não");
+        int wantRematch = scan.nextInt();
+        if (wantRematch == 1) {
+            Game.rematch(player1, player2);
+        }
+
         System.out.printf("Vitorias de %s:%d\nVitorias de %s:%d\n", player1.getName(), player1.getWins(), player2.getName(), player2.getWins());
 
     }
