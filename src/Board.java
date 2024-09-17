@@ -1,8 +1,4 @@
-import java.util.Arrays;
-
 public class Board {
-    static char[] game = new char[9];
-    static String[] wins = new String[] {"]"};
 
     static void printBoard(char[] game){
         for (int i = 0; i<=8; i++){
@@ -22,27 +18,24 @@ public class Board {
         return false;
     }
 
-    static boolean checkWins(char[] game){
-        String sequence = Arrays.toString(game);
-        if(game[0] != ' ' && game[0] == game[1] && game[1] == game[2]){
-            System.out.println("Jogo ganho");
-        } else if (game[3] != ' ' && game[3] == game[4] && game[4] == game[5]) {
-            System.out.println("Jogo ganho");
-        } else if (game[6] != ' ' && game[6] == game[7] && game[7] == game[8]) {
-            System.out.println("Jogo ganho");
-        } else if (game[0] != ' ' && game[0] == game[3] && game[3] == game[6]) {
-            System.out.println("Jogo ganho");
-        } else if (game[1] != ' ' && game[1] == game[4] && game[4] == game[7]) {
-            System.out.println("Jogo ganho");
-        } else if (game[2] != ' ' && game[2] == game[5] && game[5] == game[8]) {
-            System.out.println("Jogo ganho");
-        } else if (game[0] != ' ' && game[0] == game[4] && game[4] == game[8]) {
-            System.out.println("Jogo ganho");
-        } else if (game[2] != ' ' && game[2] == game[4] && game[4] == game[6]) {
-            System.out.println("Jogo ganho");
-        } else {
-            return false;
+    static char checkWins(char[] game) {
+        int[][] winConditions = new int[][]{
+                new int[]{0, 1, 2},
+                new int[]{3, 4, 5},
+                new int[]{6, 7, 8},
+                new int[]{0, 3, 6},
+                new int[]{1, 4, 7},
+                new int[]{2, 5, 8},
+                new int[]{0, 4, 8},
+                new int[]{2, 4, 6}
+        };
+        for (int[] condition : winConditions) {
+            if (game[condition[0]] == game[condition[1]] && game[condition[1]] == game[condition[2]] && game[condition[0]] != ' ') {
+                return game[condition[0]];
+            }
         }
-        return true;
+        return ' ';
     }
+
+
 }
